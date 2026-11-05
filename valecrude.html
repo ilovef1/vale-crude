@@ -1,0 +1,603 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="VALE CRUDE — A fictional petroleum concept brand and interactive exploration simulator.">
+<meta name="robots" content="index, follow">
+<meta property="og:title" content="VALE CRUDE — The Deep Runs Dark">
+<meta property="og:description" content="Enter the fictional VALE CRUDE energy universe.">
+<title>VALE CRUDE — The Deep Runs Dark</title>
+
+<style>
+:root {
+  --gold: #b98b4b;
+  --bg: #0d0f0e;
+  --text: #eee9df;
+  --heading: Georgia, "Times New Roman", serif;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html { scroll-behavior: smooth; }
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: Arial, sans-serif;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.nav {
+  height: 78px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 7%;
+  border-bottom: 1px solid #ffffff18;
+  position: absolute;
+  width: 100%;
+  z-index: 5;
+  background: linear-gradient(#090b0ae8, transparent);
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  letter-spacing: .23em;
+  font-size: 13px;
+  font-weight: 800;
+}
+
+.brand-mark {
+  width: 31px;
+  height: 31px;
+  border: 1px solid var(--gold);
+  display: grid;
+  place-items: center;
+  color: var(--gold);
+  font-family: var(--heading);
+  font-size: 18px;
+  transform: rotate(45deg);
+}
+
+.brand-mark span { transform: rotate(-45deg); }
+
+.nav-links {
+  display: flex;
+  gap: 28px;
+  align-items: center;
+  color: #d2cec5;
+  font-size: 10px;
+  letter-spacing: .2em;
+  text-transform: uppercase;
+}
+
+.nav-links a:hover { color: var(--gold); }
+
+.nav-cta {
+  border: 1px solid #b98b4b88;
+  padding: 12px 17px;
+  color: var(--gold);
+}
+
+.hero {
+  min-height: 720px;
+  height: 100vh;
+  position: relative;
+  display: flex;
+  align-items: center;
+  padding: 130px 10% 90px;
+  background:
+    radial-gradient(ellipse at 73% 52%, #8a5d2a42, transparent 34%),
+    linear-gradient(90deg,#090b0a 0%,#0b0d0cdd 42%,#0b0d0c30 100%),
+    repeating-linear-gradient(115deg,#ffffff05 0 1px,transparent 1px 80px),
+    #151713;
+}
+
+.hero:before {
+  content: "";
+  position: absolute;
+  right: 4%;
+  top: 18%;
+  width: 49%;
+  height: 70%;
+  opacity: .8;
+  background:
+    repeating-linear-gradient(90deg,transparent 0 48px,#d2a15a12 49px 50px);
+  clip-path: polygon(8% 100%,18% 45%,28% 60%,42% 12%,55% 55%,68% 26%,83% 62%,100% 100%);
+}
+
+.hero-content {
+  position: relative;
+  z-index: 1;
+  max-width: 720px;
+}
+
+.eyebrow {
+  color: var(--gold);
+  letter-spacing: .34em;
+  text-transform: uppercase;
+  font-size: 10px;
+  font-weight: 700;
+}
+
+h1, h2, h3 {
+  font-family: var(--heading);
+  font-weight: 400;
+}
+
+h1 {
+  font-size: clamp(58px, 9vw, 124px);
+  line-height: .88;
+  letter-spacing: -.055em;
+  margin: 28px 0;
+}
+
+h1 em, h2 em { color: var(--gold); }
+
+.hero-copy {
+  max-width: 430px;
+  color: #b7b5ad;
+  line-height: 1.8;
+  font-size: 14px;
+}
+
+.hero-actions {
+  display: flex;
+  gap: 14px;
+  margin-top: 38px;
+  flex-wrap: wrap;
+}
+
+.btn {
+  border: 1px solid var(--gold);
+  padding: 16px 23px;
+  font-size: 10px;
+  letter-spacing: .2em;
+  text-transform: uppercase;
+  font-weight: 700;
+  cursor: pointer;
+  transition: .2s;
+  display: inline-block;
+}
+
+.btn.primary {
+  background: var(--gold);
+  color: #11110f;
+}
+
+.btn.primary:hover { background: #d3aa72; }
+
+.btn.ghost {
+  color: #e5ded1;
+  border-color: #ffffff55;
+}
+
+.btn.ghost:hover {
+  border-color: var(--gold);
+  color: var(--gold);
+}
+
+.hero-stamp {
+  position: absolute;
+  right: 7%;
+  bottom: 12%;
+  border: 1px solid #b98b4b66;
+  padding: 22px 25px;
+  color: var(--gold);
+  font-family: var(--heading);
+  font-size: 14px;
+  letter-spacing: .12em;
+  transform: rotate(-7deg);
+  background: #0d0f0e99;
+}
+
+.ticker {
+  display: flex;
+  justify-content: space-around;
+  gap: 20px;
+  padding: 22px 5vw;
+  background: var(--gold);
+  color: #15130f;
+  text-transform: uppercase;
+  letter-spacing: .2em;
+  font-size: 9px;
+  font-weight: 800;
+  flex-wrap: wrap;
+}
+
+.section { padding: 110px 10%; }
+
+.section-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: end;
+  gap: 30px;
+  margin-bottom: 48px;
+}
+
+.section h2 {
+  font-size: clamp(42px, 6vw, 70px);
+  line-height: 1;
+  margin-top: 18px;
+}
+
+.muted {
+  color: #999990;
+  max-width: 360px;
+  line-height: 1.8;
+  font-size: 13px;
+}
+
+.cards {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 15px;
+}
+
+.card {
+  min-height: 280px;
+  padding: 29px;
+  border: 1px solid #ffffff1c;
+  background: linear-gradient(145deg,#1c1e19,#111310);
+}
+
+.card-num {
+  color: var(--gold);
+  font-size: 10px;
+  letter-spacing: .2em;
+}
+
+.card h3 {
+  font-size: 32px;
+  margin: 38px 0 12px;
+}
+
+.card p {
+  color: #aaa99f;
+  font-size: 12px;
+  line-height: 1.8;
+}
+
+.simulator {
+  background: #171a16;
+  border-top: 1px solid #ffffff14;
+  border-bottom: 1px solid #ffffff14;
+}
+
+.sim-grid {
+  display: grid;
+  grid-template-columns: 1.1fr .9fr;
+  gap: 70px;
+  align-items: center;
+}
+
+.quote {
+  font-family: var(--heading);
+  font-size: clamp(27px, 3.4vw, 43px);
+  line-height: 1.25;
+  color: #e8e0d3;
+  margin-top: 40px;
+}
+
+.quote em { color: var(--gold); }
+
+.console {
+  border: 1px solid #b98b4b55;
+  background: #0b0e0c;
+  padding: 28px;
+  box-shadow: 0 20px 70px #0008;
+}
+
+.console-top {
+  display: flex;
+  justify-content: space-between;
+  color: var(--gold);
+  font-size: 9px;
+  letter-spacing: .2em;
+  border-bottom: 1px solid #ffffff1b;
+  padding-bottom: 17px;
+}
+
+.statline {
+  display: flex;
+  justify-content: space-between;
+  font-size: 11px;
+  color: #aaa99f;
+  margin-top: 20px;
+}
+
+.readout {
+  font-family: var(--heading);
+  font-size: 44px;
+  color: #f0e8d9;
+  margin: 8px 0;
+}
+
+.gauge {
+  height: 9px;
+  background: #33362e;
+  margin: 12px 0 22px;
+  overflow: hidden;
+}
+
+.gauge-fill {
+  height: 100%;
+  width: 38%;
+  background: var(--gold);
+  transition: width .45s;
+}
+
+.console button {
+  width: 100%;
+  margin-top: 22px;
+  background: var(--gold);
+  border: 0;
+  color: #111;
+  padding: 15px;
+  font-weight: 800;
+  letter-spacing: .16em;
+  text-transform: uppercase;
+  cursor: pointer;
+}
+
+.console button:hover { background: #d3aa72; }
+
+.console-note {
+  font-size: 10px;
+  color: #77796f;
+  line-height: 1.6;
+  margin-top: 16px;
+}
+
+.footer {
+  padding: 45px 10%;
+  display: flex;
+  justify-content: space-between;
+  gap: 25px;
+  align-items: center;
+  border-top: 1px solid #ffffff18;
+  color: #77796f;
+  font-size: 10px;
+  letter-spacing: .13em;
+  text-transform: uppercase;
+}
+
+.disclaimer {
+  color: #77796f;
+  font-size: 10px;
+  letter-spacing: .04em;
+  line-height: 1.7;
+  max-width: 520px;
+  text-transform: none;
+}
+
+@media(max-width:760px) {
+  .nav { height: 68px; }
+  .nav-links a:not(.nav-cta) { display: none; }
+  .hero { min-height: 690px; padding: 120px 7vw 80px; }
+  .hero-stamp { right: 8%; bottom: 5%; font-size: 11px; }
+  .section { padding: 78px 7vw; }
+  .section-head { display: block; }
+  .muted { margin-top: 20px; }
+  .cards { grid-template-columns: 1fr; }
+  .sim-grid { grid-template-columns: 1fr; gap: 35px; }
+  .footer { padding: 35px 7vw; display: block; }
+  .footer .disclaimer { margin-top: 18px; }
+}
+</style>
+</head>
+
+<body>
+<div id="app">
+
+<nav class="nav">
+  <a class="brand" href="#top">
+    <span class="brand-mark"><span>V</span></span>
+    <span>VALE <span style="color:#b98b4b">CRUDE</span></span>
+  </a>
+  <div class="nav-links">
+    <a href="#frontier">The frontier</a>
+    <a href="#operations">Our world</a>
+    <a href="#simulator">Field console</a>
+    <a class="nav-cta" href="#simulator">Enter the field</a>
+  </div>
+</nav>
+
+<header class="hero" id="top">
+  <div class="hero-content">
+    <div class="eyebrow">Independent energy collective · Est. 2026</div>
+    <h1>THE DEEP<br>RUNS <em>DARK.</em></h1>
+    <p class="hero-copy">
+      Beyond the last city light lies a frontier built on ambition,
+      nerve, and the pursuit of what sleeps beneath the surface.
+      Welcome to the Vale universe.
+    </p>
+    <div class="hero-actions">
+      <a class="btn primary" href="#frontier">Explore the frontier</a>
+      <a class="btn ghost" href="#simulator">Open field console ↗</a>
+    </div>
+  </div>
+  <div class="hero-stamp">NO LIGHT<br>WITHOUT PRESSURE</div>
+</header>
+
+<div class="ticker">
+  <span>/// The frontier never sleeps</span>
+  <span>Precision · Pressure · Patience</span>
+  <span>/// Fictional universe</span>
+</div>
+
+<section class="section" id="frontier">
+  <div class="section-head">
+    <div>
+      <div class="eyebrow">01 / The frontier</div>
+      <h2>Built for the<br><em>bold-minded.</em></h2>
+    </div>
+    <p class="muted">
+      A fictional energy house exploring the drama, scale,
+      and high-stakes decisions of the petroleum world
+      through story and simulation.
+    </p>
+  </div>
+
+  <div class="cards" id="operations">
+    <article class="card">
+      <div class="card-num">01 — THE BASIN</div>
+      <h3>Uncharted ground.</h3>
+      <p>Remote landscapes. Unanswered questions. Every new frontier begins with a map and a theory.</p>
+    </article>
+
+    <article class="card">
+      <div class="card-num">02 — THE RIG</div>
+      <h3>Precision under pressure.</h3>
+      <p>Engineering, teamwork, and split-second decisions define this fictional field operation.</p>
+    </article>
+
+    <article class="card">
+      <div class="card-num">03 — THE LEDGER</div>
+      <h3>Power has a price.</h3>
+      <p>Track simulated output, fictional market signals, and the choices behind an energy empire.</p>
+    </article>
+  </div>
+</section>
+
+<section class="section simulator" id="simulator">
+  <div class="sim-grid">
+    <div>
+      <div class="eyebrow">02 / Interactive experience</div>
+      <h2>Enter the<br><em>field console.</em></h2>
+      <p class="muted" style="margin-top:24px">
+        Run a fictional exploration cycle. Watch the pressure gauge
+        climb and see what the field team discovers. This is a
+        game-style simulation, not a real-world operating tool.
+      </p>
+      <p class="quote">
+        “Fortune favours the ones who <em>read the pressure.</em>”
+      </p>
+    </div>
+
+    <div class="console">
+      <div class="console-top">
+        <span>VALE / FIELD TERMINAL</span>
+        <span id="status">STANDBY</span>
+      </div>
+
+      <div class="statline">
+        <span>SIMULATED DEPTH INDEX</span>
+        <span id="depthLabel">038 / 100</span>
+      </div>
+
+      <div class="readout" id="depth">3,800 m</div>
+
+      <div class="statline">
+        <span>PRESSURE INDEX</span>
+        <span id="pressureLabel">38%</span>
+      </div>
+
+      <div class="gauge">
+        <div class="gauge-fill" id="gauge"></div>
+      </div>
+
+      <div class="statline">
+        <span>FIELD DISCOVERY</span>
+        <strong id="discovery" style="color:#b98b4b">Awaiting signal</strong>
+      </div>
+
+      <button id="run">Run exploration cycle ↗</button>
+
+      <p class="console-note">
+        SIMULATION ONLY · Values are fictional and generated
+        for entertainment. No real drilling instructions
+        or operational data.
+      </p>
+    </div>
+  </div>
+</section>
+
+<footer class="footer">
+  <div>
+    <div class="brand">
+      <span class="brand-mark"><span>V</span></span>
+      <span>VALE CRUDE</span>
+    </div>
+    <div style="margin-top:15px">© 2026 VALE — A fictional concept brand</div>
+  </div>
+
+  <p class="disclaimer">
+    VALE CRUDE is a fictional creative concept and interactive
+    simulation. It is not an operating oil company, does not
+    offer extraction services, and does not encourage unlawful
+    activity or environmental harm.
+  </p>
+</footer>
+
+</div>
+
+<script>
+const runButton = document.getElementById('run');
+
+const discoveries = [
+  'Trace signal detected',
+  'Geological anomaly logged',
+  'New basin mapped',
+  'Pressure event simulated',
+  'Survey complete'
+];
+
+let cycle = 0;
+
+runButton.addEventListener('click', () => {
+  cycle++;
+
+  const value = Math.min(38 + cycle * 13, 100);
+
+  document.getElementById('status').textContent =
+    value >= 100 ? 'CYCLE COMPLETE' : 'SCANNING';
+
+  document.getElementById('depthLabel').textContent =
+    String(value).padStart(3, '0') + ' / 100';
+
+  document.getElementById('depth').textContent =
+    (value * 100).toLocaleString('en-IN') + ' m';
+
+  document.getElementById('pressureLabel').textContent =
+    value + '%';
+
+  document.getElementById('gauge').style.width =
+    value + '%';
+
+  document.getElementById('discovery').textContent =
+    discoveries[Math.min(cycle - 1, discoveries.length - 1)];
+
+  if (value >= 100) {
+    cycle = 0;
+    runButton.textContent = 'Restart exploration cycle ↗';
+  } else {
+    runButton.textContent = 'Advance simulation ↗';
+  }
+
+  if (cycle === 0) {
+    document.getElementById('status').textContent = 'STANDBY';
+    document.getElementById('depthLabel').textContent = '038 / 100';
+    document.getElementById('depth').textContent = '3,800 m';
+    document.getElementById('pressureLabel').textContent = '38%';
+    document.getElementById('gauge').style.width = '38%';
+    document.getElementById('discovery').textContent = 'Awaiting signal';
+    runButton.textContent = 'Run exploration cycle ↗';
+  }
+});
+</script>
+
+</body>
+</html>
